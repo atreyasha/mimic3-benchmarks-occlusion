@@ -1,6 +1,6 @@
 ## MIMIC-III Benchmarks IHM Occlusion Analysis
 
-Explainability in AI is a very important and crucial research field, particularly in the biomedical domain where results derived from machine-learning models could help to make important decisions for hospitals.
+Explainability in AI is a crucial research field, particularly in the biomedical domain where results derived from machine-learning models could help to make important decisions for hospitals.
 
 In this repository, we conduct an occlusion (perturbation) analysis of the MIMIC-III benchmark best in-hospital-mortality (IHM) model. The MIMIC-III benchmark model(s) are detailed in [Harutyunyan et al. 2019](https://arxiv.org/abs/1703.07771), with open-source code being found [here](https://github.com/YerevaNN/mimic3-benchmarks).
 
@@ -9,6 +9,7 @@ In this repository, we conduct an occlusion (perturbation) analysis of the MIMIC
 2. [Repository initialization](#2-Repository-initialization)
 3. [Occlusion pipeline](#3-Occlusion-pipeline)
 4. [Visualization](#4-Visualization)
+5. [Interpretation](#5-Interpretation)
 
 ### 1. Dependencies
 
@@ -56,7 +57,7 @@ $ ./init.sh
 
 ### 3. Occlusion pipeline
 
-In order to conduct occlusion on the `MIMIC-III` benchmark IHM dataset, we developed functions within `occlude.py`. We provide code for four types of occlusion; namely zero, normal-value, inner and outer occlusion. Below is a usage script:
+In order to conduct occlusion on the `MIMIC-III` benchmark IHM dataset, we developed functions within `occlude.py`. We provide code for four types of occlusion; namely zero, normal-value, inner and outer occlusion. Details regarding each of these occlusions can be found in the py-docstring documentation in `occlusion.py`. Below is a usage script:
 
 ```
 $ python3 occlude.py --help
@@ -91,4 +92,6 @@ $ Rscript vis.R
 
 The corresponding visualizations will be converted to latex code within the `tikz` framework and will then be saved as pdf's in the `./img` directory.
 
-**Note:** This requires all the corresponding `csv` files to be present. 
+**Note:** This requires all the corresponding `csv` files to be present.
+
+### 5. Interpretation 
