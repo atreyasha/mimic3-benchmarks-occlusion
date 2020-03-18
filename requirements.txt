@@ -1,0 +1,43 @@
+absl-py==0.9.0
+appnope==0.1.0; sys_platform == "darwin"
+astor==0.8.1
+backcall==0.1.0
+colorama==0.4.3; sys_platform == "win32"
+decorator==4.4.1
+gast==0.2.2
+google-pasta==0.1.8
+grpcio==1.27.1
+h5py==2.10.0
+ipython==7.12.0
+ipython-genutils==0.2.0
+jedi==0.16.0
+joblib==0.14.1
+keras==2.1.2
+keras-applications==1.0.8
+keras-preprocessing==1.1.0
+markdown==3.2
+numpy==1.18.1
+opt-einsum==3.1.0
+pandas==1.0.1
+parso==0.6.1
+pexpect==4.8.0; sys_platform != "win32"
+pickleshare==0.7.5
+prompt-toolkit==3.0.3
+protobuf==3.11.3
+ptyprocess==0.6.0; sys_platform != "win32"
+pygments==2.5.2
+python-dateutil==2.8.1
+pytz==2019.3
+pyyaml==5.3
+scikit-learn==0.22.1
+scipy==1.4.1
+six==1.14.0
+tensorboard==1.15.0
+tensorflow==1.15.2
+tensorflow-estimator==1.15.1
+termcolor==1.1.0
+traitlets==4.3.3
+wcwidth==0.1.8
+werkzeug==1.0.0
+wheel==0.34.2; python_version >= "3"
+wrapt==1.11.2
