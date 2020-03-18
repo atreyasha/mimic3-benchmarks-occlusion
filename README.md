@@ -33,6 +33,8 @@ $ pip install -r requirements.txt
 > install.packages(c("tools","ggplot2","tikzDevice","reshape2","optparse"))
 ```
 
+**Note:** R-scripts were tested with R version `3.6.*`.
+
 ### 2. Repository initialization
 
 In order to populate this repository with the necessary data, follow these steps:
