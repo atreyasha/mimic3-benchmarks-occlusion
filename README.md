@@ -60,7 +60,7 @@ $ ./init.sh
 
 ### 3. Occlusion pipeline
 
-In order to conduct occlusion on the `MIMIC-III` benchmark IHM dataset, we developed functions within `occlude.py`. We provide code for four types of occlusion; namely zero, normal-value, inner and outer occlusion. Details regarding each of these occlusions can be found in the py-docstring documentation in `occlusion.py`. Below is a usage script:
+In order to conduct occlusion on the `MIMIC-III` benchmark IHM dataset, we developed functions within `occlude.py`. We provide code for four types of occlusion; namely zero, normal-value, inner and outer occlusion. Details regarding each of these occlusions can be found in the py-docstring documentation in `occlude.py`. Below is a usage script:
 
 ```
 $ python3 occlude.py --help
