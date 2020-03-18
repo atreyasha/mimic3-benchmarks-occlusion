@@ -101,7 +101,17 @@ The corresponding visualizations will be converted to latex code within the `tik
 Based on the results of the perturbation, we can already interpret some interesting results. Below, we have one of the visualizations produced from the step before.
 
 <p align="center">
-<img src="./img/nom_violin.png" width="800">
+<img src="./img/nom_violin.png" width="1000">
 </p>
 
 This visualization shows the nominal perturbation when replacing features of interest marginally by their `normal` or healthy values, which were suggested by medical experts.
+
+Most features show non-clustered and generally widely distributed perturbations. The exception are the `presence*` features, which are binary features which indicate `1` when the feature was present in the timestep and `0` if the feature was absent during the timestep and needed to be imputed.
+
+For the `presence*` features, we assumed the `normal` values would be `1`, since in a normal scenario, all features should be recorded for all timesteps. By doing this, we can see significant and clustered perturbations for the `presence*` features.
+
+In particular, we can see that if (by chance) more `capillary_refill_rate` measurements were taken, such that `capillary_refill_rate` did not need to be imputed, we could see the model's prediction probability for mortality decreases significantly. This could be pose a risk of providing a false negative result for mortality.
+
+### 6. Acknowledgments
+
+@YerevaNN for their MIMIC-III benchmark code, which was mildly re-factored for use in `./utils`
