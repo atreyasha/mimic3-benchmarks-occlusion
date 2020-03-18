@@ -2,7 +2,7 @@
 
 Explainability in AI is a crucial research field, particularly in the biomedical domain where results derived from machine-learning models could help to make important decisions for hospitals.
 
-In this repository, we conduct an occlusion (perturbation) analysis of the MIMIC-III benchmark best in-hospital-mortality (IHM) model. The MIMIC-III benchmark model(s) are detailed in [Harutyunyan et al. 2019](https://arxiv.org/abs/1703.07771), with open-source code being found [here](https://github.com/YerevaNN/mimic3-benchmarks).
+In this repository, we conduct an occlusion (perturbation) analysis of the MIMIC-III benchmarks best in-hospital-mortality (IHM) model. The MIMIC-III benchmark model(s) are detailed in [Harutyunyan et al. 2019](https://arxiv.org/abs/1703.07771), with open-source code being found [here](https://github.com/YerevaNN/mimic3-benchmarks).
 
 ### Table of Contents
 1. [Dependencies](#1-Dependencies) 
