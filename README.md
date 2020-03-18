@@ -115,4 +115,4 @@ In particular, we can see that if (by chance) more `capillary_refill_rate` measu
 
 ### 6. Acknowledgments
 
-@YerevaNN for their MIMIC-III benchmark code, which was mildly re-factored for use in `./utils`
+**@YerevaNN** for their MIMIC-III benchmark code, which was mildly re-factored for use in `./utils`
