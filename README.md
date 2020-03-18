@@ -96,4 +96,12 @@ The corresponding visualizations will be converted to latex code within the `tik
 
 **Note:** This requires all the corresponding `csv` files to be present.
 
-### 5. Interpretation 
+### 5. Interpretation
+
+Based on the results of the perturbation, we can already interpret some interesting results. Below, we have one of the visualizations produced from the step before.
+
+<p align="center">
+<img src="./img/nom_violin.png" width="800">
+</p>
+
+This visualization shows the nominal perturbation when replacing features of interest marginally by their `normal` or healthy values, which were suggested by medical experts.
