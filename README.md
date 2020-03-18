@@ -10,6 +10,7 @@ In this repository, we conduct an occlusion (perturbation) analysis of the MIMIC
 3. [Occlusion pipeline](#3-Occlusion-pipeline)
 4. [Visualization](#4-Visualization)
 5. [Interpretation](#5-Interpretation)
+6. [Acknowledgments](#6-Acknowledgments)
 
 ### 1. Dependencies
 
