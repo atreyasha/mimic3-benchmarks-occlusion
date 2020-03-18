@@ -111,7 +111,7 @@ Most features show non-clustered and generally widely distributed perturbations.
 
 For the `presence*` features, we assumed the `normal` values would be `1`, since in a normal scenario, all features should be recorded for all timesteps. By doing this, we can see significant and clustered perturbations for the `presence*` features.
 
-In particular, we can see that if (by chance) more `capillary_refill_rate` measurements were taken (such that `capillary_refill_rate` did not need to be imputed), we would see the model's prediction probability for mortality decreasing significantly. This could be pose a risk of false negatives for mortality.
+In particular, we can see that if (by chance) more `capillary_refill_rate` measurements were taken (such that `capillary_refill_rate` did not need to be imputed), the model's prediction probability for mortality decreases significantly. This could be pose a risk of false negatives for mortality.
 
 ### 6. Acknowledgments
 
