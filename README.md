@@ -105,7 +105,7 @@ Based on the results of the perturbation, we can already interpret some interest
 <img src="./img/nom_violin.png" width="1000">
 </p>
 
-This visualization shows the nominal perturbation when replacing features of interest marginally by their `normal` or healthy values, which were suggested by medical experts.
+This visualization shows nominal perturbations during occlusion. `normal` here refers to replacing features of interest marginally by their `normal` or healthy values, which were suggested by medical experts. We shall focus on `normal` occlusion for this interpretation.
 
 Most features show non-clustered and generally widely distributed perturbations. The exception are the `presence*` features, which are binary features which indicate `1` when the feature was present in the timestep and `0` if the feature was absent during the timestep and needed to be imputed.
 
