@@ -105,13 +105,13 @@ Based on the results of the perturbation, we can already interpret some interest
 <img src="./img/nom_violin.png" width="1000">
 </p>
 
-This visualization shows nominal perturbations during occlusion. `normal` here refers to replacing features of interest marginally by their `normal` or healthy values, which were suggested by medical experts. We shall focus on `normal` occlusion for this interpretation.
+This visualization shows nominal perturbations recorded occlusion. `normal` on the top-right refers to replacing features of interest marginally by their `normal` or healthy values, which were suggested by medical experts. We shall focus on `normal` occlusion for this interpretation.
 
 Most features show non-clustered and generally widely distributed perturbations. The exception are the `presence*` features, which are binary features which indicate `1` when the feature was present in the timestep and `0` if the feature was absent during the timestep and needed to be imputed.
 
 For the `presence*` features, we assumed the `normal` values would be `1`, since in a normal scenario, all features should be recorded for all timesteps. By doing this, we can see significant and clustered perturbations for the `presence*` features.
 
-In particular, we can see that if (by chance) more `capillary_refill_rate` measurements were taken (such that `capillary_refill_rate` did not need to be imputed), the model's prediction probability for mortality decreases significantly. This could be pose a risk of false negatives for mortality.
+In particular, we can see that if (by chance) more `capillary_refill_rate` measurements were taken (such that `capillary_refill_rate` did not need to be imputed), the model's prediction probability for mortality decreases significantly. This could pose a risk of false negatives for mortality.
 
 ### 6. Acknowledgments
 
