@@ -2,7 +2,7 @@ absl-py==0.9.0; python_version >= "2.7" and python_full_version < "3.0.0" or pyt
 appnope==0.1.0; sys_platform == "darwin" and python_version >= "3.6"
 astor==0.8.1; python_version >= "2.7" and python_full_version < "3.0.0" or python_full_version >= "3.4.0"
 backcall==0.1.0; python_version >= "3.6"
-colorama==0.4.3; python_version >= "3.6" and python_full_version < "3.0.0" and sys_platform == "win32" or python_full_version >= "3.5.0" and sys_platform == "win32" and python_version >= "3.6"
+colorama==0.4.3; python_version >= "3.6" and python_full_version < "3.0.0" and sys_platform == "win32" or sys_platform == "win32" and python_version >= "3.6" and python_full_version >= "3.5.0"
 decorator==4.4.1; python_version >= "3.6" and python_full_version < "3.0.0" or python_full_version >= "3.2.0" and python_version >= "3.6"
 gast==0.2.2; python_version >= "2.7" and python_full_version < "3.0.0" or python_full_version >= "3.4.0"
 google-pasta==0.1.8
@@ -28,7 +28,7 @@ ptyprocess==0.6.0; sys_platform != "win32" and python_version >= "3.6"
 pygments==2.5.2; python_version >= "3.6" and python_full_version < "3.0.0" or python_full_version >= "3.5.0" and python_version >= "3.6"
 python-dateutil==2.8.1; python_full_version >= "3.6.1"
 pytz==2019.3; python_full_version >= "3.6.1"
-pyyaml==5.3; python_version >= "2.7" and python_full_version < "3.0.0" or python_full_version >= "3.5.0"
+pyyaml==5.4; (python_version >= "2.7" and python_full_version < "3.0.0") or (python_full_version >= "3.6.0")
 scikit-learn==0.22.1; python_version >= "3.5"
 scipy==1.4.1; python_version >= "3.5"
 six==1.14.0; python_full_version >= "3.6.1" and python_version >= "3.6" and (python_version >= "2.7" and python_full_version < "3.0.0" or python_full_version >= "3.3.0")
@@ -39,5 +39,4 @@ termcolor==1.1.0
 traitlets==4.3.3; python_version >= "3.6"
 wcwidth==0.1.8; python_version >= "3.6"
 werkzeug==1.0.0; python_version >= "2.7" and python_full_version < "3.0.0" or python_full_version >= "3.5.0"
-wheel==0.34.2; python_version >= "3" and python_full_version < "3.0.0" or python_full_version >= "3.5.0" and python_version >= "3"
 wrapt==1.11.2
