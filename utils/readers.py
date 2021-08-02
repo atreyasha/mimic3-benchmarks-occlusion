@@ -84,18 +84,16 @@ class DecompensationReader(Reader):
             name: Name of the sample.
         """
         if index < 0 or index >= len(self._data):
-            raise ValueError("Index must be from 0 (inclusive) to number of examples (exclusive).")
+            raise ValueError(
+                "Index must be from 0 (inclusive) to number of examples (exclusive)."
+            )
 
         name = self._data[index][0]
         t = self._data[index][1]
         y = self._data[index][2]
         (X, header) = self._read_timeseries(name, t)
 
-        return {"X": X,
-                "t": t,
-                "y": y,
-                "header": header,
-                "name": name}
+        return {"X": X, "t": t, "y": y, "header": header, "name": name}
 
 
 class InHospitalMortalityReader(Reader):
@@ -141,18 +139,16 @@ class InHospitalMortalityReader(Reader):
             name: Name of the sample.
         """
         if index < 0 or index >= len(self._data):
-            raise ValueError("Index must be from 0 (inclusive) to number of lines (exclusive).")
+            raise ValueError(
+                "Index must be from 0 (inclusive) to number of lines (exclusive)."
+            )
 
         name = self._data[index][0]
         t = self._period_length
         y = self._data[index][1]
         (X, header) = self._read_timeseries(name)
 
-        return {"X": X,
-                "t": t,
-                "y": y,
-                "header": header,
-                "name": name}
+        return {"X": X, "t": t, "y": y, "header": header, "name": name}
 
 
 class LengthOfStayReader(Reader):
@@ -199,18 +195,16 @@ class LengthOfStayReader(Reader):
             name: Name of the sample.
         """
         if index < 0 or index >= len(self._data):
-            raise ValueError("Index must be from 0 (inclusive) to number of lines (exclusive).")
+            raise ValueError(
+                "Index must be from 0 (inclusive) to number of lines (exclusive)."
+            )
 
         name = self._data[index][0]
         t = self._data[index][1]
         y = self._data[index][2]
         (X, header) = self._read_timeseries(name, t)
 
-        return {"X": X,
-                "t": t,
-                "y": y,
-                "header": header,
-                "name": name}
+        return {"X": X, "t": t, "y": y, "header": header, "name": name}
 
 
 class PhenotypingReader(Reader):
@@ -223,7 +217,8 @@ class PhenotypingReader(Reader):
         """
         Reader.__init__(self, dataset_dir, listfile)
         self._data = [line.split(',') for line in self._data]
-        self._data = [(mas[0], float(mas[1]), list(map(int, mas[2:]))) for mas in self._data]
+        self._data = [(mas[0], float(mas[1]), list(map(int, mas[2:])))
+                      for mas in self._data]
 
     def _read_timeseries(self, ts_filename):
         ret = []
@@ -254,18 +249,16 @@ class PhenotypingReader(Reader):
             name: Name of the sample.
         """
         if index < 0 or index >= len(self._data):
-            raise ValueError("Index must be from 0 (inclusive) to number of lines (exclusive).")
+            raise ValueError(
+                "Index must be from 0 (inclusive) to number of lines (exclusive)."
+            )
 
         name = self._data[index][0]
         t = self._data[index][1]
         y = self._data[index][2]
         (X, header) = self._read_timeseries(name)
 
-        return {"X": X,
-                "t": t,
-                "y": y,
-                "header": header,
-                "name": name}
+        return {"X": X, "t": t, "y": y, "header": header, "name": name}
 
 
 class MultitaskReader(Reader):
@@ -286,7 +279,8 @@ class MultitaskReader(Reader):
             x = x.split(';')
             if x[0] == '':
                 return ([], [])
-            return (list(map(int, x[:len(x)//2])), list(map(float, x[len(x)//2:])))
+            return (list(map(int, x[:len(x) // 2])),
+                    list(map(float, x[len(x) // 2:])))
 
         def process_ph(x):
             return list(map(int, x.split(';')))
@@ -295,7 +289,9 @@ class MultitaskReader(Reader):
             x = x.split(';')
             if x[0] == '':
                 return ([], [])
-            return (list(map(int, x[:len(x)//2])), list(map(int, x[len(x)//2:])))
+            return (list(map(int,
+                             x[:len(x) // 2])), list(map(int,
+                                                         x[len(x) // 2:])))
 
         self._data = [(fname, float(t), process_ihm(ihm), process_los(los),
                        process_ph(pheno), process_decomp(decomp))
@@ -336,16 +332,20 @@ class MultitaskReader(Reader):
             name: Name of the sample.
         """
         if index < 0 or index >= len(self._data):
-            raise ValueError("Index must be from 0 (inclusive) to number of lines (exclusive).")
+            raise ValueError(
+                "Index must be from 0 (inclusive) to number of lines (exclusive)."
+            )
 
         name = self._data[index][0]
         (X, header) = self._read_timeseries(name)
 
-        return {"X": X,
-                "t": self._data[index][1],
-                "ihm": self._data[index][2],
-                "los": self._data[index][3],
-                "pheno": self._data[index][4],
-                "decomp": self._data[index][5],
-                "header": header,
-                "name": name}
+        return {
+            "X": X,
+            "t": self._data[index][1],
+            "ihm": self._data[index][2],
+            "los": self._data[index][3],
+            "pheno": self._data[index][4],
+            "decomp": self._data[index][5],
+            "header": header,
+            "name": name
+        }

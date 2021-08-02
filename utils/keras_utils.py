@@ -15,13 +15,17 @@ if K.backend() == 'tensorflow':
 
 from keras.layers import Layer
 
-
 # ===================== METRICS ===================== #
 
 
 class DecompensationMetrics(keras.callbacks.Callback):
-    def __init__(self, train_data_gen, val_data_gen, deep_supervision,
-                 batch_size=32, early_stopping=True, verbose=2):
+    def __init__(self,
+                 train_data_gen,
+                 val_data_gen,
+                 deep_supervision,
+                 batch_size=32,
+                 early_stopping=True,
+                 verbose=2):
         super(DecompensationMetrics, self).__init__()
         self.train_data_gen = train_data_gen
         self.val_data_gen = val_data_gen
@@ -41,7 +45,8 @@ class DecompensationMetrics(keras.callbacks.Callback):
             (x, y) = next(data_gen)
             pred = self.model.predict(x, batch_size=self.batch_size)
             if self.deep_supervision:
-                for m, t, p in zip(x[1].flatten(), y.flatten(), pred.flatten()):
+                for m, t, p in zip(x[1].flatten(), y.flatten(),
+                                   pred.flatten()):
                     if np.equal(m, 1):
                         y_true.append(t)
                         predictions.append(p)
@@ -58,7 +63,8 @@ class DecompensationMetrics(keras.callbacks.Callback):
 
     def on_epoch_end(self, epoch, logs={}):
         print("\n==>predicting on train")
-        self.calc_metrics(self.train_data_gen, self.train_history, 'train', logs)
+        self.calc_metrics(self.train_data_gen, self.train_history, 'train',
+                          logs)
         print("\n==>predicting on validation")
         self.calc_metrics(self.val_data_gen, self.val_history, 'val', logs)
 
@@ -70,7 +76,13 @@ class DecompensationMetrics(keras.callbacks.Callback):
 
 
 class InHospitalMortalityMetrics(keras.callbacks.Callback):
-    def __init__(self, train_data, val_data, target_repl, batch_size=32, early_stopping=True, verbose=2):
+    def __init__(self,
+                 train_data,
+                 val_data,
+                 target_repl,
+                 batch_size=32,
+                 early_stopping=True,
+                 verbose=2):
         super(InHospitalMortalityMetrics, self).__init__()
         self.train_data = train_data
         self.val_data = val_data
@@ -89,7 +101,8 @@ class InHospitalMortalityMetrics(keras.callbacks.Callback):
             if self.verbose == 1:
                 print("\tdone {}/{}".format(i, len(data[0])), end='\r')
             if self.target_repl:
-                (x, y, y_repl) = (data[0][i:i + B], data[1][0][i:i + B], data[1][1][i:i + B])
+                (x, y, y_repl) = (data[0][i:i + B], data[1][0][i:i + B],
+                                  data[1][1][i:i + B])
             else:
                 (x, y) = (data[0][i:i + B], data[1][i:i + B])
             outputs = self.model.predict(x, batch_size=B)
@@ -120,8 +133,12 @@ class InHospitalMortalityMetrics(keras.callbacks.Callback):
 
 
 class PhenotypingMetrics(keras.callbacks.Callback):
-    def __init__(self, train_data_gen, val_data_gen, batch_size=32,
-                 early_stopping=True, verbose=2):
+    def __init__(self,
+                 train_data_gen,
+                 val_data_gen,
+                 batch_size=32,
+                 early_stopping=True,
+                 verbose=2):
         super(PhenotypingMetrics, self).__init__()
         self.train_data_gen = train_data_gen
         self.val_data_gen = val_data_gen
@@ -154,7 +171,8 @@ class PhenotypingMetrics(keras.callbacks.Callback):
 
     def on_epoch_end(self, epoch, logs={}):
         print("\n==>predicting on train")
-        self.calc_metrics(self.train_data_gen, self.train_history, 'train', logs)
+        self.calc_metrics(self.train_data_gen, self.train_history, 'train',
+                          logs)
         print("\n==>predicting on validation")
         self.calc_metrics(self.val_data_gen, self.val_history, 'val', logs)
 
@@ -166,8 +184,13 @@ class PhenotypingMetrics(keras.callbacks.Callback):
 
 
 class LengthOfStayMetrics(keras.callbacks.Callback):
-    def __init__(self, train_data_gen, val_data_gen, partition, batch_size=32,
-                 early_stopping=True, verbose=2):
+    def __init__(self,
+                 train_data_gen,
+                 val_data_gen,
+                 partition,
+                 batch_size=32,
+                 early_stopping=True,
+                 verbose=2):
         super(LengthOfStayMetrics, self).__init__()
         self.train_data_gen = train_data_gen
         self.val_data_gen = val_data_gen
@@ -204,10 +227,14 @@ class LengthOfStayMetrics(keras.callbacks.Callback):
                     predictions += list(pred)
         print('\n')
         if self.partition == 'log':
-            predictions = [metrics.get_estimate_log(x, 10) for x in predictions]
+            predictions = [
+                metrics.get_estimate_log(x, 10) for x in predictions
+            ]
             ret = metrics.print_metrics_log_bins(y_true, predictions)
         if self.partition == 'custom':
-            predictions = [metrics.get_estimate_custom(x, 10) for x in predictions]
+            predictions = [
+                metrics.get_estimate_custom(x, 10) for x in predictions
+            ]
             ret = metrics.print_metrics_custom_bins(y_true, predictions)
         if self.partition == 'none':
             ret = metrics.print_metrics_regression(y_true, predictions)
@@ -217,7 +244,8 @@ class LengthOfStayMetrics(keras.callbacks.Callback):
 
     def on_epoch_end(self, epoch, logs={}):
         print("\n==>predicting on train")
-        self.calc_metrics(self.train_data_gen, self.train_history, 'train', logs)
+        self.calc_metrics(self.train_data_gen, self.train_history, 'train',
+                          logs)
         print("\n==>predicting on validation")
         self.calc_metrics(self.val_data_gen, self.val_history, 'val', logs)
 
@@ -230,8 +258,13 @@ class LengthOfStayMetrics(keras.callbacks.Callback):
 
 
 class MultitaskMetrics(keras.callbacks.Callback):
-    def __init__(self, train_data_gen, val_data_gen, partition,
-                 batch_size=32, early_stopping=True, verbose=2):
+    def __init__(self,
+                 train_data_gen,
+                 val_data_gen,
+                 partition,
+                 batch_size=32,
+                 early_stopping=True,
+                 verbose=2):
         super(MultitaskMetrics, self).__init__()
         self.train_data_gen = train_data_gen
         self.val_data_gen = val_data_gen
@@ -273,31 +306,36 @@ class MultitaskMetrics(keras.callbacks.Callback):
             los_t = los_y_reg  # real value not the label
 
             # ihm
-            for (m, t, p) in zip(ihm_M.flatten(), ihm_t.flatten(), ihm_p.flatten()):
+            for (m, t, p) in zip(ihm_M.flatten(), ihm_t.flatten(),
+                                 ihm_p.flatten()):
                 if np.equal(m, 1):
                     ihm_y_true.append(t)
                     ihm_pred.append(p)
 
             # decomp
-            for (m, t, p) in zip(decomp_M.flatten(), decomp_t.flatten(), decomp_p.flatten()):
+            for (m, t, p) in zip(decomp_M.flatten(), decomp_t.flatten(),
+                                 decomp_p.flatten()):
                 if np.equal(m, 1):
                     decomp_y_true.append(t)
                     decomp_pred.append(p)
 
             # los
             if los_p.shape[-1] == 1:  # regression
-                for (m, t, p) in zip(los_M.flatten(), los_t.flatten(), los_p.flatten()):
+                for (m, t, p) in zip(los_M.flatten(), los_t.flatten(),
+                                     los_p.flatten()):
                     if np.equal(m, 1):
                         los_y_true.append(t)
                         los_pred.append(p)
             else:  # classification
-                for (m, t, p) in zip(los_M.flatten(), los_t.flatten(), los_p.reshape((-1, 10))):
+                for (m, t, p) in zip(los_M.flatten(), los_t.flatten(),
+                                     los_p.reshape((-1, 10))):
                     if np.equal(m, 1):
                         los_y_true.append(t)
                         los_pred.append(p)
 
             # pheno
-            for (t, p) in zip(pheno_t.reshape((-1, 25)), pheno_p.reshape((-1, 25))):
+            for (t, p) in zip(pheno_t.reshape((-1, 25)),
+                              pheno_p.reshape((-1, 25))):
                 pheno_y_true.append(t)
                 pheno_pred.append(p)
         print('\n')
@@ -342,16 +380,21 @@ class MultitaskMetrics(keras.callbacks.Callback):
 
     def on_epoch_end(self, epoch, logs={}):
         print("\n==>predicting on train")
-        self.calc_metrics(self.train_data_gen, self.train_history, 'train', logs)
+        self.calc_metrics(self.train_data_gen, self.train_history, 'train',
+                          logs)
         print("\n==>predicting on validation")
         self.calc_metrics(self.val_data_gen, self.val_history, 'val', logs)
 
         if self.early_stopping:
-            ihm_max_auc = np.max([x["val_ihm_auroc"] for x in self.val_history])
+            ihm_max_auc = np.max(
+                [x["val_ihm_auroc"] for x in self.val_history])
             ihm_cur_auc = self.val_history[-1]["val_ihm_auroc"]
-            pheno_max_auc = np.max([x["val_pheno_ave_auc_macro"] for x in self.val_history])
+            pheno_max_auc = np.max(
+                [x["val_pheno_ave_auc_macro"] for x in self.val_history])
             pheno_cur_auc = self.val_history[-1]["val_pheno_ave_auc_macro"]
-            if (pheno_max_auc > 0.75 and pheno_cur_auc < 0.73) and (ihm_max_auc > 0.85 and ihm_cur_auc < 0.83):
+            if (pheno_max_auc > 0.75
+                    and pheno_cur_auc < 0.73) and (ihm_max_auc > 0.85
+                                                   and ihm_cur_auc < 0.83):
                 self.model.stop_training = True
 
 
@@ -388,7 +431,6 @@ class CollectAttetion(Layer):
     """ Collect attention on 3D tensor with softmax and summation
         Masking is disabled after this layer
     """
-
     def __init__(self, **kwargs):
         self.supports_masking = True
         super(CollectAttetion, self).__init__(**kwargs)
@@ -409,7 +451,6 @@ class CollectAttetion(Layer):
 class Slice(Layer):
     """ Slice 3D tensor by taking x[:, :, indices]
     """
-
     def __init__(self, indices, **kwargs):
         self.supports_masking = True
         self.indices = indices
@@ -435,7 +476,6 @@ class Slice(Layer):
 class GetTimestep(Layer):
     """ Takes 3D tensor and returns x[:, pos, :]
     """
-
     def __init__(self, pos=-1, **kwargs):
         self.pos = pos
         self.supports_masking = True
@@ -462,7 +502,6 @@ class ExtendMask(Layer):
         Output:      X
         Output_mask: M
     """
-
     def __init__(self, add_epsilon=False, **kwargs):
         self.supports_masking = True
         self.add_epsilon = add_epsilon

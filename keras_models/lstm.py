@@ -12,10 +12,18 @@ from utils.keras_utils import ExtendMask
 
 
 class Network(Model):
-
-    def __init__(self, dim, batch_norm, dropout, rec_dropout, task,
-                 target_repl=False, deep_supervision=False, num_classes=1,
-                 depth=1, input_dim=76, **kwargs):
+    def __init__(self,
+                 dim,
+                 batch_norm,
+                 dropout,
+                 rec_dropout,
+                 task,
+                 target_repl=False,
+                 deep_supervision=False,
+                 num_classes=1,
+                 depth=1,
+                 input_dim=76,
+                 **kwargs):
 
         print("==> not used params in network class:", kwargs.keys())
 
@@ -41,7 +49,7 @@ class Network(Model):
         mX = Masking()(X)
 
         if deep_supervision:
-            M = Input(shape=(None,), name='M')
+            M = Input(shape=(None, ), name='M')
             inputs.append(M)
 
         # Configurations
@@ -78,12 +86,14 @@ class Network(Model):
             L = Dropout(dropout)(L)
 
         if target_repl:
-            y = TimeDistributed(Dense(num_classes, activation=final_activation),
+            y = TimeDistributed(Dense(num_classes,
+                                      activation=final_activation),
                                 name='seq')(L)
             y_last = LastTimestep(name='single')(y)
             outputs = [y_last, y]
         elif deep_supervision:
-            y = TimeDistributed(Dense(num_classes, activation=final_activation))(L)
+            y = TimeDistributed(Dense(num_classes,
+                                      activation=final_activation))(L)
             y = ExtendMask()([y, M])  # this way we extend mask of y to M
             outputs = [y]
         else:
@@ -93,9 +103,8 @@ class Network(Model):
         super(Network, self).__init__(inputs=inputs, outputs=outputs)
 
     def say_name(self):
-        return "{}.n{}{}{}{}.dep{}".format('k_lstm',
-                                           self.dim,
-                                           ".bn" if self.batch_norm else "",
-                                           ".d{}".format(self.dropout) if self.dropout > 0 else "",
-                                           ".rd{}".format(self.rec_dropout) if self.rec_dropout > 0 else "",
-                                           self.depth)
+        return "{}.n{}{}{}{}.dep{}".format(
+            'k_lstm', self.dim, ".bn" if self.batch_norm else "",
+            ".d{}".format(self.dropout) if self.dropout > 0 else "",
+            ".rd{}".format(self.rec_dropout) if self.rec_dropout > 0 else "",
+            self.depth)
