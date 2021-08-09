@@ -2,7 +2,7 @@
 
 Explainability in AI is a crucial research field, particularly in the biomedical domain where results derived from machine-learning models could help to make important decisions for hospitals.
 
-In this repository, we conduct an occlusion (perturbation) analysis of the MIMIC-III benchmarks best in-hospital-mortality (IHM) model. The MIMIC-III benchmark model(s) are detailed in [Harutyunyan et al. 2019](https://arxiv.org/abs/1703.07771), with open-source code being found [here](https://github.com/YerevaNN/mimic3-benchmarks).
+In this repository, we conduct an occlusion (perturbation) analysis of the MIMIC-III benchmarks best in-hospital-mortality (IHM) model. The MIMIC-III benchmark model(s) are detailed in an upstream repository [here](https://github.com/YerevaNN/mimic3-benchmarks), which is distributed under the MIT [License](./THIRD_PARTY_NOTICES.txt).
 
 ### Table of Contents
 1. [Dependencies](#1-Dependencies) 
@@ -10,7 +10,7 @@ In this repository, we conduct an occlusion (perturbation) analysis of the MIMIC
 3. [Occlusion pipeline](#3-Occlusion-pipeline)
 4. [Visualization](#4-Visualization)
 5. [Interpretation](#5-Interpretation)
-6. [Acknowledgments](#6-Acknowledgments)
+6. [Reference](#6-Reference)
 
 ### 1. Dependencies
 
@@ -113,6 +113,22 @@ For the `presence*` features, we assumed the `normal` values would be `1`, since
 
 In particular, we can see that if (by chance) more `capillary_refill_rate` measurements were taken (such that `capillary_refill_rate` did not need to be imputed), the model's prediction probability for mortality decreases significantly. This could pose a risk of false negatives for mortality.
 
-### 6. Acknowledgments
+### 6. Reference
 
-**@YerevaNN** for their MIMIC-III benchmark code, which was mildly re-factored for use in `./utils`
+Harutyunyan et al. 2019
+
+```
+@article{Harutyunyan2019,
+  author={Harutyunyan, Hrayr and Khachatrian, Hrant and Kale, David C. and Ver Steeg,
+          Greg and Galstyan, Aram},
+  title={Multitask learning and benchmarking with clinical time series data},
+  journal={Scientific Data},
+  year={2019},
+  volume={6},
+  number={1},
+  pages={96},
+  issn={2052-4463},
+  doi={10.1038/s41597-019-0103-9},
+  url={https://doi.org/10.1038/s41597-019-0103-9}
+}
+```
